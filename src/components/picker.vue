@@ -13,9 +13,6 @@
         name: 'picker',
         data() {
             return {
-                obj:{
-
-                },
                 "province": "",
                 "city": "",
                 "area": ""
