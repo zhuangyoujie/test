@@ -24,7 +24,7 @@ export default new Router({
             component: test
         },
         {
-            path: '/',
+            path: '/compute',
             name: 'compute',
             component: compute
         }

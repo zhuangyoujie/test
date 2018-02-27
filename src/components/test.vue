@@ -34,7 +34,6 @@
     export default {
         name: 'ao',
         created() {
-
             // 数据初始化,默认选中北京市,默认选中第一个;北京市数据为总数据的前18个
             let beijing = this.provinces.slice(0, 19)
             this.cities = beijing.filter(item => {
@@ -51,67 +50,58 @@
             this.selectedBlock = this.blocks[0]
         },
         watch: {
-            // selectedProvince(){
-            //             var _this = this
-            //             Vue.nextTick(() => {
-            //                 _this.selectedBlock = _this.blocks[0]
-            //                 // 触发与 v-model相关的 input事件
-            //                 _this.$emit('input', _this.info)
-            //             })
-            // },
-        //     selectedProvince(newVal, oldVal) {
-        //         // 港澳台数据只有一级,特殊处理
-        //         if (newVal.sheng === '71' || newVal.sheng === '81' || newVal.sheng === '82') {
-        //             this.cities = [newVal]
-        //             this.blocks = [newVal]
-        //         } else {
-        //             this.cities = this.provinces.filter(item => {
-        //                 if (item.level === 2 && item.sheng && newVal.sheng === item.sheng) {
-        //                     return true
-        //                 }
-        //             })
-        //         }
-        //         var _this = this
-        //         // 此时在渲染DOM,渲染结束之后再选中第一个
-        //         Vue.nextTick(() => {
-        //             _this.selectedCity = _this.cities[0]
-        //             _this.$emit('input', _this.info)
-        //         })
-        //     },
-        //     selectedBlock() {
-        //         var _this = this
-        //         Vue.nextTick(() => {
-        //             _this.$emit('input', _this.info)
-        //         })
-        //     },
-        //     selectedCity(newVal) {
-        //         // 选择了一个市,要选择区了 di是城市的代表,sheng
-        //         if (newVal.sheng === '71' || newVal.sheng === '81' || newVal.sheng === '82') {
-        //             this.blocks = [newVal]
-        //             this.cities = [newVal]
-        //         } else {
-        //             this.blocks = this.provinces.filter(item => {
-        //                 if (item.level === 3 && item.sheng && item.sheng == newVal.sheng && item.di === newVal.di && item.name !== '市辖区') {
-        //                     return true
-        //                 }
-        //             })
-        //         }
-        //         var _this = this
-        //         Vue.nextTick(() => {
-        //             _this.selectedBlock = _this.blocks[0]
-        //             // 触发与 v-model相关的 input事件
-        //             _this.$emit('input', _this.info)
-        //         })
-            // }
+            selectedProvince(newVal, oldVal) {
+                // 港澳台数据只有一级,特殊处理
+                if (newVal.sheng === '71' || newVal.sheng === '81' || newVal.sheng === '82') {
+                    this.cities = [newVal]
+                    this.blocks = [newVal]
+                } else {
+                    this.cities = this.provinces.filter(item => {
+                        if (item.level === 2 && item.sheng && newVal.sheng === item.sheng) {
+                            return true
+                        }
+                    })
+                }
+                var _this = this;
+                // 此时在渲染DOM,渲染结束之后再选中第一个
+                Vue.nextTick(() => {
+                    _this.selectedCity = _this.cities[0]
+                    _this.$emit('select', _this.info)
+                })
+            },
+            selectedCity(newVal) {
+                // 选择了一个市,要选择区了 di是城市的代表,sheng
+                if (newVal.sheng === '71' || newVal.sheng === '81' || newVal.sheng === '82') {
+                    this.blocks = [newVal]
+                    this.cities = [newVal]
+                } else {
+                    this.blocks = this.provinces.filter(item => {
+                        if (item.level === 3 && item.sheng && item.sheng == newVal.sheng && item.di === newVal.di && item.name !== '市辖区') {
+                            return true
+                        }
+                    })
+                }
+                var _this = this
+                Vue.nextTick(() => {
+                    _this.selectedBlock = _this.blocks[0]
+                    // 触发与 v-model相关的 input事件
+                    _this.$emit('select', _this.info)
+                })
+            },
+            selectedBlock() {
+                var _this = this;
+                Vue.nextTick(() => {
+                    _this.$emit('select', _this.info)
+                })
+            }
         },
         computed: {
-            selectedProvince(val) {
-                console.log(val)
-                // return {
-                //     province: this.selectedProvince,
-                //     city: this.selectedCity,
-                //     block: this.selectedBlock
-                // }
+            info(){
+                return {
+                    province: this.selectedProvince,
+                    city: this.selectedCity,
+                    block: this.selectedBlock
+                }
             }
         },
         data() {
@@ -130,8 +120,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .ivu-page-item-active {
-        background-color: red;
-        border-color: red;
+    select {
+        border: solid 1px #000;
+        height: 30px;
     }
 </style>
