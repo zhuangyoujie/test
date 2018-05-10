@@ -1,16 +1,17 @@
 <template>
     <div class="hello">
-        <swiper :options="swiperOption" ref="mySwiper">
+        <swiper :options="swiperOption" ref="mySwiper" class="swiper-container">
             <!-- slides -->
-            <swiper-slide><img src="../assets/1.jpg" alt=""></swiper-slide>
-            <swiper-slide><img src="../assets/2.jpg" alt=""></swiper-slide>
-            <swiper-slide><img src="../assets/1.jpg" alt=""></swiper-slide>
+            <swiper-slide class="swiper-item"><img src="../assets/1.jpg" alt=""></swiper-slide>
+            <swiper-slide  class="swiper-item"><img src="../assets/2.png" alt=""></swiper-slide>
+            <swiper-slide  class="swiper-item"><img src="../assets/3.jpg" alt=""></swiper-slide>
             <!-- Optional controls -->
             <div class="swiper-pagination" slot="pagination"></div>
             <div class="swiper-button-prev" slot="button-prev"></div>
             <div class="swiper-button-next" slot="button-next"></div>
             <div class="swiper-scrollbar"   slot="scrollbar"></div>
         </swiper>
+        <div>kkkk</div>
     </div>
 </template>
 
@@ -52,5 +53,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.swiper-container {
+    width: 100%;
+}
+    .swiper-item img{
+        width: 100%;
+    }
 </style>

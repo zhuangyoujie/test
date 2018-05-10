@@ -3,12 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
- import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
 import VDistpicker from 'v-distpicker'
 Vue.component('v-distpicker', VDistpicker)
 import 'iview/dist/styles/iview.css';
-
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 
 Vue.config.productionTip = false

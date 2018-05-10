@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import picker from '@/components/picker'
 import test from '@/components/test'
 import compute from '@/components/compute'
+import jd from '@/components/jd'
 Vue.use(Router)
 
 export default new Router({
@@ -27,7 +28,11 @@ export default new Router({
             path: '/compute',
             name: 'compute',
             component: compute
+        },
+        {
+            path: '/',
+            name: 'jd',
+            component: jd
         }
-
     ]
 })

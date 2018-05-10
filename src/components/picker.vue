@@ -30,6 +30,7 @@
      */
     import provinces from '../js/provinces.js'
     import Vue from 'vue'
+
     export default {
         name: 'ao',
         created() {
@@ -95,7 +96,7 @@
             }
         },
         computed: {
-            info(){
+            info() {
                 return {
                     province: this.selectedProvince,
                     city: this.selectedCity,
